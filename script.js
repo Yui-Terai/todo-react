@@ -11,9 +11,11 @@ class List extends React.Component {
   }
 
 
-  removeHandler() {
+  removeHandler(index) {
     let list = this.state.list;
-
+    list.splice(index, 1);
+    this.setState({ list: list });
+    console.log("im index: " + index);
   }
 
   clickHandler() {
@@ -32,10 +34,10 @@ class List extends React.Component {
   render() {
     // render the list with a map() here
     const listItems = this.state.list.map((item, index) => {
-      return <div>
-                <li key={index}>{item}</li>
+      return <div key={index}>
+                <li>{item}</li>
                 <button
-                  onClick={() => {
+                  onClick={(index) => {
                     this.removeHandler();
                   }}
                 >
