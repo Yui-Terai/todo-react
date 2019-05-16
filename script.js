@@ -4,7 +4,7 @@ class Itemlist extends React.Component {
     this.state = {
       list: [],
       word: "",
-      error: ""
+      error: "",
     };
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
@@ -25,8 +25,12 @@ class Itemlist extends React.Component {
     if(this.state.word.length < 1 || this.state.word.length > 10) {
       this.setState({error: "Accept only between 1 to 10 words!!! Type again!"});
     } else {
-      newList.push(this.state.word);
+      newList.push({
+      "word": this.state.word,
+      "date": moment().format('MMMM Do YYYY, h:mm:ss a')
+    });
       this.setState({ list: newList, word: removeWord, error: removeWord });
+      console.log()
     }
   }
 
@@ -77,18 +81,16 @@ class Form extends React.Component {
 
 
 
-
-
-
 class TodoItem extends React.Component {
   render() {
     const listItems = this.props.list.map((item, index) => {
             return (
               <div key={index}>
-                <li>{item}</li>
+                <li>{item.word}</li>
                 <button name={index} onClick={() => this.props.removeHandler(index)}>
                   delete
                 </button>
+                <div>{item.date}</div>
               </div>
             );
           });
