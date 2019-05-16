@@ -22,7 +22,7 @@ class Itemlist extends React.Component {
     let removeWord = "";
     
 
-    if(this.state.word.length < 1 || this.state.word.length > 10) {
+    if(this.state.word.length < 1 || this.state.word.length > 20) {
       this.setState({error: "Accept only between 1 to 10 words!!! Type again!"});
     } else {
       newList.push({
@@ -62,6 +62,7 @@ class Form extends React.Component {
   render() {
     return(
       <div className="list">
+        <h1>🌈マイ　トゥードゥー🌈</h1>
         <input onChange = { (event) => {this.props.changeHandler(event)} } value={this.props.word}/>
         <button
           onClick = {() => {  
@@ -90,7 +91,7 @@ class TodoItem extends React.Component {
                 <button name={index} onClick={() => this.props.removeHandler(index)}>
                   delete
                 </button>
-                <div>{item.date}</div>
+                <p>{item.date}</p>
               </div>
             );
           });
